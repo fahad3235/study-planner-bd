@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Planner BD — স্টাডি প্ল্যানার</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">📚</span>
+    <h1 data-i18n="appTitle">Study Planner BD</h1>
+  </div>
+  <nav class="top-actions" aria-label="actions">
+    <button id="sampleBtn" class="btn ghost" data-i18n="sampleData">Sample data</button>
+    <button id="exportBtn" class="btn ghost" data-i18n="export">Export</button>
+    <button id="importBtn" class="btn ghost" data-i18n="import">Import</button>
+    <input type="file" id="importFile" accept="application/json" hidden>
+    <button id="clearBtn" class="btn ghost danger" data-i18n="clearAll">Clear all</button>
+    <button id="langToggle" class="btn primary" aria-label="language">বাংলা</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <!-- Stats strip -->
+  <section class="strip" aria-label="overview">
+    <div class="stat">
+      <div class="stat-value" id="statReadiness">0%</div>
+      <div class="stat-label" data-i18n="overallReadiness">Overall readiness</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="statSubjects">0</div>
+      <div class="stat-label" data-i18n="subjects">Subjects</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="statTopicsDone">0/0</div>
+      <div class="stat-label" data-i18n="topicsDone">Topics done</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="statNearest">—</div>
+      <div class="stat-label" data-i18n="nearestExam">Nearest exam</div>
+    </div>
+  </section>
+
+  <!-- Today's focus -->
+  <section class="card" id="focusCard">
+    <h2 data-i18n="todaysFocus">🎯 Today's focus</h2>
+    <div id="focusBody"></div>
+  </section>
+
+  <!-- Exam week view -->
+  <section class="card">
+    <h2 data-i18n="examSchedule">🗓 Exam schedule</h2>
+    <div id="examList"></div>
+  </section>
+
+  <!-- Subjects -->
+  <section class="card">
+    <h2 data-i18n="yourSubjects">📖 Your subjects</h2>
+    <form id="subjectForm" class="form-row" novalidate>
+      <input type="text" id="subjectName" maxlength="60"
+             data-i18n-ph="subjectNamePh" placeholder="Subject name (e.g. Data Structures)">
+      <input type="date" id="examDate" aria-label="exam date">
+      <button type="submit" class="btn primary" id="addSubjectBtn" data-i18n="addSubject">Add subject</button>
+    </form>
+    <p class="hint" data-i18n="examDateHint">Exam date is optional — add it to unlock countdowns and smart focus.</p>
+    <p class="form-error" id="subjectError" role="alert" hidden></p>
+    <p class="form-warn" id="subjectWarn" role="status" hidden></p>
+    <div id="subjectList"></div>
+    <div id="emptySubjects" class="empty" data-i18n="emptySubjects">
+      No subjects yet. Add your first subject above — or load sample data to explore.
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span data-i18n="footNote">All data stays in your browser (localStorage). Export JSON to back up.</span>
+  </footer>
+</main>
+
+<script src="js/i18n.js"></script>
+<script src="js/planner.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
